@@ -1,0 +1,33 @@
+.header-wrap {
+    display: flex;
+    align-items: flex-start;
+    justify-content: flex-end;
+    z-index: 1;
+
+    .auth-wrap {
+        padding: 5px;
+        display: block;
+        margin-top: 20px;
+        margin-right: 20px;
+        border-radius: 5px;
+        background: rgb(39, 37, 40);
+
+    }
+
+    .auth-flex {
+        display: flex;
+        align-items: center;
+        .login-icon {
+            width: 25px;
+            path {
+                fill: #fff;
+            }
+        }
+        span {
+            // margin-right: 10px;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            color: #fff;
+        }
+    }
+}

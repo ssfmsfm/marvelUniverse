@@ -1,0 +1,54 @@
+.page-header-nav-wrap {
+    box-sizing: border-box;
+    position: relative;
+    margin-top: 50px;
+    height: 70px;
+    display: flex;
+    align-items: center;
+
+    .page-header-nav-links {
+        display: flex;
+        flex-flow: row nowrap;
+        width: 100%;
+        align-items: center;
+        justify-content: space-between;
+        list-style-type: none;
+        padding: 0 10px;
+        box-sizing: border-box;
+        z-index: 1;
+
+        li {
+
+            &:nth-child(2) {
+                margin-right: 4vw;
+            }
+            &:nth-child(3) {
+                margin-left: 4vw;
+            }
+
+            .page-header-nav-link {
+                font-size: 1.5em;
+                text-transform: uppercase;
+            }
+        }
+    }
+
+    .name-container {
+        display: flex;
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        align-items: center;
+        justify-content: center;
+
+        .current-page-name {
+            text-transform: uppercase;
+            font-weight: 400;
+            font-size: 5vw;
+            margin: 0;
+            padding: 0;
+        }
+    }
+}

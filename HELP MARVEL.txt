@@ -1,0 +1,22 @@
+// 5946db73bd3d0b38c8929856f8141066e1efc46d   - private key
+// 2dde210826e26cf72eb2951408286268    - public key
+
+thumbnail - объект с картинкой {path: "...", extension: "jpg"}    url = thumbnail.path+thumbnail.extension
+
+// ts=1&apikey=2dde210826e26cf72eb2951408286268&hash=7a2b9ba391c8901832ce990064b4929f  HASH
+
+
+// https://gateway.marvel.com/v1/public/characters?ts=1&apikey=2dde210826e26cf72eb2951408286268&hash=7a2b9ba391c8901832ce990064b4929f  CARACTERS MARVEL
+
+
+// https://gateway.marvel.com:443/v1/public/characters/1017100?ts=1&apikey=2dde210826e26cf72eb2951408286268&hash=7a2b9ba391c8901832ce990064b4929f    ID 1017100
+
+// http://gateway.marvel.com/v1/public/comics?ts=1&apikey=2dde210826e26cf72eb2951408286268&hash=7a2b9ba391c8901832ce990064b4929f    COMICS MARVEL
+// http://gateway.marvel.com/v1/public/comics/3627/?ts=1&apikey=2dde210826e26cf72eb2951408286268&hash=7a2b9ba391c8901832ce990064b4929f    COMICS MARVEL ID
+
+id
+thumbnail - объект с картинкой {path: "...", extension: "jpg"}    url = thumbnail.path+thumbnail.extension
+title
+description?
+text?
+

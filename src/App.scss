@@ -1,0 +1,11 @@
+.App {
+  position: relative;
+  min-height: 100vh;
+  max-width: 100%;
+  background: url("./assets/secondBG.jpg");
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  background-position: center;
+  z-index: 0;
+}

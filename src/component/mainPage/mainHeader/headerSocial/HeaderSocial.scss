@@ -1,0 +1,37 @@
+.header-social {
+    position: relative;
+    color: #fff;
+    max-width: 100px;
+    background: rgb(54, 104, 157);
+    padding: 10px;
+
+    &::after {
+        display: block;
+        content: "";
+        position: absolute;
+        bottom: -25px;
+        left: 0;
+        width: 0;
+        height: 0;
+        border-right: 25px solid rgb(54, 104, 157);
+        border-left: 25px solid rgb(54, 104, 157);
+        border-bottom: 25px solid transparent;
+    }
+
+    &-links {
+        display: flex;
+        flex-flow: column nowrap;
+        gap: 20px;
+        list-style-type: none;
+    }
+
+    &-link {
+        width: 30px;
+
+        &-icon {
+            path {
+                fill: #fff;
+            }
+        }
+    }
+}
