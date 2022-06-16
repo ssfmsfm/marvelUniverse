@@ -10,7 +10,11 @@ type FetchComicsType = {
     count: number,
 }
 
-export const fetchComics = createAsyncThunk<FetchComicsType, undefined, { rejectValue: string }>(
+export const fetchComics = createAsyncThunk<
+        FetchComicsType,
+        undefined,
+        { rejectValue: string }
+    >(
     "comics/fetchComics",
     async (_, thunkApi) => {
 
