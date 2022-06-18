@@ -5,6 +5,13 @@
     .container {
         width: 80%;
         margin: 0 auto;
+        display: flex;
+        flex-flow: column nowrap;
+        span {
+            color: rgb(224, 216, 216);
+            font-weight: 600;
+            text-transform: uppercase;
+        }
     }
 
     &::before {
@@ -31,12 +38,67 @@
         background-repeat: no-repeat;
     }
 
+    .buttons-header-wrap {
+        align-self: end;
+        display: flex;
+        flex-flow: row nowrap;
+        gap: 60px;
+        align-items: center;
+
+        .language {
+            width: 30px;
+            height: 20px;
+            cursor: pointer;
+            
+
+            &.en {
+                background: url("../../assets/usa.png");
+            }
+
+            &.ru {
+                background: url("../../assets/russia.png");
+            }
+
+            &.en, &.ru {
+                background-repeat: no-repeat;
+                background-size: cover;
+                background-position: center;
+            }
+        }
+
+        .nav-favo {
+            display: flex;
+            flex-flow: row nowrap;
+            align-items: center;
+            gap: 10px;
+            padding: 5px;
+            cursor: pointer;
+            background: inherit;
+
+
+            &-icon {
+                width: 30px;
+
+                path {
+                    fill: rgb(224, 216, 216);
+                }
+            }
+        }
+
+        .page-header-auth {
+            align-self: auto;
+        }
+    }
+
     .page-header-auth {
+        align-self: end;
         display: flex;
         flex-flow: row nowrap;
         align-items: center;
-        justify-content: flex-end;
         height: 60px;
+        background: inherit;
+        cursor: pointer;
+        margin-right: 20px;
 
         &-icon {
             width: 40px;
@@ -44,12 +106,6 @@
             path {
                 fill: rgb(224, 216, 216);
             }
-        }
-
-        span {
-            color: rgb(224, 216, 216);
-            font-weight: 600;
-            text-transform: uppercase;
         }
 
     }

@@ -1,3 +1,4 @@
+import { AuthReducer } from './auth/authSlice';
 import { ComicReducer } from './comicPage/comicSlice';
 import { ComicsReducer } from './comicsPage/comicsSlice';
 import { HeroesReducer } from './heroesPage/heroesSlice';
@@ -8,6 +9,7 @@ const reducer = {
     heroes: HeroesReducer,
     comic: ComicReducer,
     comics: ComicsReducer,
+    auth: AuthReducer,
 };
 
 export default reducer;

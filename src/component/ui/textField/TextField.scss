@@ -1,0 +1,29 @@
+.text-field-container {
+    position: relative;
+    width: 80%;
+
+    .label {
+        color: rgb(82, 79, 79);
+        font-size: 18px;
+        font-weight: 500;
+    };
+
+    .input {
+        width: 100%;
+        box-sizing: border-box;
+        margin-top: 8px;
+        border: 1px solid rgb(192, 167, 167);
+        border-radius: 16px;
+        padding: 8px 16px;
+        outline: none;
+
+        &:hover {
+            border-color: rgb(250, 198, 198);
+        }
+
+        &:focus {
+            border-color: rgb(117, 114, 114);
+            outline: rgb(194, 172, 172) solid 1px;
+        }
+    }
+}

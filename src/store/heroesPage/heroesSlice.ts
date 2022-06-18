@@ -1,8 +1,9 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 import HeroType from "../../types/HeroType";
 import { fetchHeroes } from "./heroesThunks";
-import { HeroesOrder, InitialState, SortFilters } from "../../component/heroesPage/HeroesFilterTypes";
+import { HeroesOrder, /*InitialState,*/ SortFilters } from "../../component/heroesPage/HeroesFilterTypes";
 import { getCurrentPageData, getSortedData } from "./getFilterData";
+import Storage from "../../helpers/Storage";
 
 
 type StoreHeroesType = {
@@ -12,7 +13,7 @@ type StoreHeroesType = {
     error?: boolean,
     currentPageData: HeroType[],
     searchData: HeroType[],
-    name?: string,
+    favoHero: number[],
     ordering: HeroesOrder,
     pageSize: number,
     page: number,
@@ -25,6 +26,7 @@ export const initialState: StoreHeroesType = {
     error: false,
     currentPageData: [],
     searchData: [],
+    favoHero: Storage.get("favoHero", []),
     ordering: HeroesOrder.idAsc,
     pageSize: 8,
     page: 1,
@@ -34,16 +36,15 @@ const heroesSlice = createSlice({
     name: "heroes",
     initialState,
     reducers: {
-        // setHeroes: (state, { payload }: PayloadAction<HeroType[]>) => {
-        //     state.data = payload;
-        //     console.log(state);
-        // },
-        // setHeroesLoading: (state, { payload }: PayloadAction<boolean>) => {
-        //     state.loading = payload;
-        // },
-        // setHeroesError: (state, { payload }: PayloadAction<boolean | undefined>) => {
-        //     state.error = payload;
-        // },
+        markHero(state, { payload: heroId }: PayloadAction<number>) {
+            if(state.favoHero.includes(heroId)) {
+                state.favoHero = state.favoHero.filter(id => id !== heroId);
+            } else {
+                state.favoHero.push(heroId);
+            }
+
+            Storage.set("favoHero", state.favoHero);
+        },
         setName(state, { payload }: PayloadAction<string>) {
             state.page = 1;
             const numValue = payload;
@@ -72,7 +73,7 @@ const heroesSlice = createSlice({
                         state.currentPageData = getCurrentPageData(sortedArr, state.page, state.pageSize);
                         return state;
                     }
-                    break;
+                    // break;
                 case HeroesOrder.idDesc:
                     {
                         state.page = 1;
@@ -80,7 +81,7 @@ const heroesSlice = createSlice({
                         state.currentPageData = getCurrentPageData(sortedArr, state.page, state.pageSize);
                         return state;
                     }
-                    break;
+                    // break;
                     case HeroesOrder.nameAsc:
                         {
                             state.page = 1;
@@ -88,7 +89,7 @@ const heroesSlice = createSlice({
                             state.currentPageData = getCurrentPageData(sortedArr, state.page, state.pageSize);
                             return state;
                         }
-                        break;
+                    // break;
                     case HeroesOrder.nameDesc:
                         {
                             state.page = 1;
@@ -96,7 +97,7 @@ const heroesSlice = createSlice({
                             state.currentPageData = getCurrentPageData(sortedArr, state.page, state.pageSize);
                             return state;
                         }
-                        break;
+                        // break;
                 default:
                     return state;
             }
@@ -115,7 +116,9 @@ const heroesSlice = createSlice({
         builder.addCase(fetchHeroes.fulfilled, (state, { payload }) => {
             state.loading = false;
             state.searchData = state.data = payload.data;
-            state.currentPageData = getCurrentPageData(state.data, state.page, state.pageSize)
+            state.page = 1;
+            state.searchData = getSortedData(state.searchData, HeroesOrder.idAsc);
+            state.currentPageData = getCurrentPageData(state.searchData, state.page, state.pageSize);
             // state.data = state.searchData = state.currentPageData = payload.data;
             state.count = payload.count;
         });

@@ -1,0 +1,35 @@
+{
+    "registration.title": "Регистрация",
+    "registration.email": "Почта",
+    "registration.password": "Пароль",
+    "registration.submit": "Зарегистрироваться",
+    "registration.question": "Уже есть аккаунт? ",
+    "registration.signin": "Войти!",
+
+    "login.title": "Вход",
+    "login.email": "Почта",
+    "login.password": "Пароль",
+    "login.submit": "Войти",
+    "login.question": "Нет аккаунта? ",
+    "login.signup": "Зарегистрироваться!",
+
+    "Email is not valid": "Неверный почтовый ящик",
+    "Password is not valid": "Неверный пароль",
+
+    "button-login": "Войти",
+    "button-logout": "Выйти",
+
+    "heroes": "Герои",
+    "comics": "Комиксы",
+    "movies": "Видео",
+    "history": "История",
+    "favourites": "Избранное",
+
+    "searchByName": "Поиск по имени",
+    "changeOrdering": "Упорядочить по",
+    "idAsc": "ID ↑",
+    "idDesc": "ID ↓",
+    "nameAsc": "Имени ↑",
+    "nameDesc": "Имени ↓",
+    "numberOfHeroes": "Героев на странице"
+}

@@ -1,9 +1,10 @@
-import React, { useEffect, useState } from 'react';
-import { MenuItem, Pagination, Select, SelectChangeEvent } from '@mui/material';
+import React, { useEffect } from 'react';
+import { MenuItem, Select, SelectChangeEvent } from '@mui/material';
 import { HeroesFilterTypes, HeroesOrder } from './HeroesFilterTypes';
 import { useActions } from '../hooks/useActions';
 import HeroType from '../../types/HeroType';
 import CustomPagination from '../pagination/Pagination';
+import useTranslate from '../hooks/useTranslate';
 
 
 type PropsType = {
@@ -15,6 +16,7 @@ type PropsType = {
 
 const HeroesFilter: React.FC<PropsType> = ( { count, state, dispatch, data } ) => {
 
+    const { t } = useTranslate();
     const { setName, setPage, setPageSize, sortData } = useActions();
 
     const updateName = (value: string) => {
@@ -46,26 +48,26 @@ const HeroesFilter: React.FC<PropsType> = ( { count, state, dispatch, data } ) =
                     <input
                         className="input-search"
                         type="text"
-                        placeholder="Search by name"
+                        placeholder={t("searchByName")}
                         onChange={event => updateName(event.target.value)}
                     />
                 </div>
                 <div className="change-ordering control">
-                    <span>Change ordering</span>
+                    <span>{t("changeOrdering")}</span>
                     <Select
                         className="select"
                         value={state.ordering}
                         onChange={handleChangeOrdering}
                     >
-                        <MenuItem value={HeroesOrder.idAsc}>ASC id</MenuItem>
-                        <MenuItem value={HeroesOrder.idDesc}>DESC id</MenuItem>
-                        <MenuItem value={HeroesOrder.nameAsc}>ASC name</MenuItem>
-                        <MenuItem value={HeroesOrder.nameDesc}>DESC name</MenuItem>
+                        <MenuItem value={HeroesOrder.idAsc}>{t("idAsc")}</MenuItem>
+                        <MenuItem value={HeroesOrder.idDesc}>{t("idDesc")}</MenuItem>
+                        <MenuItem value={HeroesOrder.nameAsc}>{t("nameAsc")}</MenuItem>
+                        <MenuItem value={HeroesOrder.nameDesc}>{t("nameDesc")}</MenuItem>
                     </Select>
                 </div>
 
                 <div className="hero-on-page control">
-                    <span>Heroes on one page</span>
+                    <span>{t("numberOfHeroes")}</span>
                     <Select
                         className="select"
                         value={state.pageSize.toString()}

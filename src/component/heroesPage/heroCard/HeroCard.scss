@@ -7,6 +7,11 @@
     flex-direction: column;
     flex-grow: 1;
     border: 1px solid #333;
+    transition: .3s;
+
+    &:hover {
+        transform: scale(1.1);
+    }
 
     .container-image {
         width: 100%;
@@ -46,6 +51,32 @@
                 top: 60%;
                 left: 20%;
                 right: 10%;
+            }
+        }
+    }
+
+    .icon-button {
+        position: absolute;
+        top: 5px;
+        right: 5px;
+
+        .icon {
+            width: 20px;
+            path {
+                transition: .3s;
+                fill: rgb(32, 29, 29);
+            }
+
+            &:hover {
+                path {
+                    fill: #daa250;
+                }
+            }
+
+            &._marked {
+                path {
+                    fill: #faaa33;
+                }
             }
         }
     }

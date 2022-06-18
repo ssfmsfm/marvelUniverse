@@ -2,10 +2,6 @@
     position: relative;
     min-height: 100vh;
     padding-bottom: 60px;
-    // width: 1000px;
-    // width: 80%;
-    // position: absolute;
-    // z-index: 2;
 
     &::before {
         display: block;
@@ -27,7 +23,6 @@
     .controls-wrap {
         display: flex;
         flex-flow: column nowrap;
-        // width: 100%;
 
         .controls {
             display: flex;
@@ -47,7 +42,7 @@
             .control {
                 display: flex;
                 flex-flow: row nowrap;
-                width: 50%;
+                // width: 50%;
                 gap: 40px;
                 align-items: center;
                 flex-grow: 1;
@@ -62,8 +57,10 @@
                 display: flex;
                 flex-flow: row nowrap;
                 flex-grow: 1;
-                width: 200px;
+                width: 170px;
+                height: 40px;
                 text-align: center;
+                box-sizing: content-box;
             }
         }
 
@@ -91,8 +88,9 @@
             display: flex;
             align-items: stretch;
             justify-content: space-between;
+            // justify-content: center;
             flex-wrap: wrap;
-            gap: 40px;
+            gap: 50px;
         }
     }
 }

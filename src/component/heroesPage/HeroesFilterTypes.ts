@@ -13,13 +13,13 @@ export type SortFilters = {
     ordering: HeroesOrder
 }
 
-export type InitialState = {
-    pageSize: string
-    page: number
-    heroesOrder: string
-    data: HeroType[]
-    currentPageData: HeroType[]
-}
+// export type InitialState = {
+//     pageSize: string
+//     page: number
+//     heroesOrder: string
+//     data: HeroType[]
+//     currentPageData: HeroType[]
+// }
 
 export type HeroesFilterTypes = {
     name?: string,

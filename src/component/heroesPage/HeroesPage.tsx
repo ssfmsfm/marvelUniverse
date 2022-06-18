@@ -3,12 +3,11 @@ import { useSelector } from "../hooks/useSelector";
 import { useActions } from "../hooks/useActions";
 import HeroCard from "./heroCard/HeroCard";
 import PageHeader from "../pageHeader/PageHeader";
+import HeroesFilter from "./HeroesFilter";
+import { HeroesReducer, initialState } from "../../store/heroesPage/heroesSlice";
 
 
 import './HeroesPage.scss';
-import HeroesFilter from "./HeroesFilter";
-import { HeroesReducer, initialState } from "../../store/heroesPage/heroesSlice";
-import { useNavigate } from "react-router-dom";
 
 
 type PropsType = {};
@@ -21,7 +20,7 @@ const HeroesPage: React.FC<PropsType> = () => {
     const data = useSelector(state => state.heroes.data);
     const currentPageData = useSelector(state => state.heroes.currentPageData);
 
-    const page = useSelector(state => state.heroes.page);
+    // const page = useSelector(state => state.heroes.page);
     const count = useSelector(state => state.heroes.count);
     const loading = useSelector(state => state.heroes.loading);
     const error = useSelector(state => state.heroes.error);
@@ -29,7 +28,6 @@ const HeroesPage: React.FC<PropsType> = () => {
 
     useEffect(() => {
         fetchHeroes();
-        console.log(currentPageData);
     }, []);
 
 

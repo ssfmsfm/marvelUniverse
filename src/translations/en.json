@@ -1,0 +1,35 @@
+{
+    "registration.title": "Registration",
+    "registration.email": "Email",
+    "registration.password": "Password",
+    "registration.submit": "Registration",
+    "registration.question": "Already have an account? ",
+    "registration.signin": "Sign In!",
+
+    "login.title": "Login",
+    "login.email": "Email",
+    "login.password": "Password",
+    "login.submit": "Login",
+    "login.question": "We don't have an account? ",
+    "login.signup": "Sign Up!",
+
+    "Email is not valid": "Email is not valid",
+    "Password is not valid": "Password is not valid",
+
+    "button-login": "Login",
+    "button-logout": "Logout",
+
+    "heroes": "Heroes",
+    "comics": "Comics",
+    "movies": "Movies",
+    "history": "History",
+    "favourites": "Favourites",
+
+    "searchByName": "Search by name",
+    "changeOrdering": "Change ordering",
+    "idAsc": "ID ↑",
+    "idDesc": "ID ↓",
+    "nameAsc": "Name ↑",
+    "nameDesc": "Name ↓",
+    "numberOfHeroes": "Heroes on one page"
+}

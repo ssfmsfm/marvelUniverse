@@ -24,7 +24,6 @@ export const fetchHeroes = createAsyncThunk<
         try {
             const response = await axios.get(url)
             .then(res => res.data);
-            console.log(response.data.count);
             return {
                 data: response.data.results as HeroType[],
                 count: response.data.count as number,

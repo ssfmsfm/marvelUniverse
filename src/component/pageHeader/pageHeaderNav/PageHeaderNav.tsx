@@ -1,16 +1,20 @@
 
 
 import { Link } from 'react-router-dom';
+import useTranslate from '../../hooks/useTranslate';
 import './PageHeaderNav.scss';
 
 const LINKS = [
-    {url: "/heroes", text: "Heroes"},
-    {url: "/comics", text: "Comics"},
-    {url: "/movies", text: "Movies"},
-    {url: "/history", text: "History"},
+    {url: "/heroes", text: "heroes"},
+    {url: "/comics", text: "comics"},
+    {url: "/movies", text: "movies"},
+    {url: "/history", text: "history"},
 ];
 
+
 const PageHeaderNav = () => {
+
+    const { t } = useTranslate();
 
     const href: string = window.location.href;
     let currentURI: string = "";
@@ -28,34 +32,17 @@ const PageHeaderNav = () => {
                 {LINKS.map(({ url, text }) =>
                     <li key={url + text}>
                         <Link to={url} className="page-header-nav-link">
-                            {text}
+                            {t(text)}
                         </Link>
                     </li>
                 )}
             </ul>
             <div className="name-container">
-                {currentURI && <h2 className="current-page-name">{currentURI}</h2>}
+                {currentURI && <h2 className="current-page-name">{t(currentURI)}</h2>}
             </div>
         </div>
     )
 }
-
-
-
-const MainNav = () => {
-
-    return (
-        <ul className="main-nav-wrap">
-            {LINKS.map(({ url, text }) =>
-                <li key={url + text}>
-                    <Link to={url} className="nav-link-text">
-                        {text}
-                    </Link>
-                </li>
-            )}
-        </ul>
-    )
-};
 
 
 export default PageHeaderNav;
