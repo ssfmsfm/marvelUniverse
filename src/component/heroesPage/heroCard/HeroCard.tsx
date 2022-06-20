@@ -19,7 +19,7 @@ type PropsType = {
 const HeroCard: React.FC<PropsType> = ({data}) => {
 
     const { markHero } = useActions();
-
+    const logged = useSelector(state => state.auth.logged);
     const favoHero = useSelector(state => state.heroes.favoHero);
     const isMarked = favoHero.includes(data.id);
     const handleClickMark = () => {
@@ -32,13 +32,15 @@ const HeroCard: React.FC<PropsType> = ({data}) => {
                 <p className="title">
                     {data.name}
                 </p>
-                {/* <Link to={`/heroes/${data.id}`} className="title">
-                        {data.name}
-                </Link> */}
             </Link>
-            <IconButton className="icon-button" onClick={handleClickMark}>
-                        <FavoIcon className={`icon ${isMarked ? "_marked" : ""}`}/>
+            {logged
+            ?
+                <IconButton className="icon-button" onClick={handleClickMark}>
+                    <FavoIcon className={`icon ${isMarked ? "_marked" : ""}`}/>
                 </IconButton>
+            :
+                null
+            }
         </div>
     )
 }

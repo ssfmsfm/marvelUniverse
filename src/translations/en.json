@@ -31,5 +31,7 @@
     "idDesc": "ID ↓",
     "nameAsc": "Name ↑",
     "nameDesc": "Name ↓",
+    "modiAsc": "Modified ↑",
+    "modiDesc": "Modified ↓",
     "numberOfHeroes": "Heroes on one page"
 }

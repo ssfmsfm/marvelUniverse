@@ -31,5 +31,7 @@
     "idDesc": "ID ↓",
     "nameAsc": "Имени ↑",
     "nameDesc": "Имени ↓",
+    "modiAsc": "Изменению ↑",
+    "modiDesc": "Изменению ↓",
     "numberOfHeroes": "Героев на странице"
 }

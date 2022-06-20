@@ -4,7 +4,7 @@ import { useActions } from "../hooks/useActions";
 import HeroCard from "./heroCard/HeroCard";
 import PageHeader from "../pageHeader/PageHeader";
 import HeroesFilter from "./HeroesFilter";
-import { HeroesReducer, initialState } from "../../store/heroesPage/heroesSlice";
+import { HeroesFilterReducer, initialState } from "../../store/heroesPage/heroesFilterSlice";
 
 
 import './HeroesPage.scss';
@@ -12,24 +12,19 @@ import './HeroesPage.scss';
 
 type PropsType = {};
 
-const HeroesPage: React.FC<PropsType> = () => {
+const HeroesPageServer: React.FC<PropsType> = () => {
 
-    const [state, dispatch] = useReducer(HeroesReducer, initialState)
+    const [state, dispatch] = useReducer(HeroesFilterReducer, initialState);
     const { fetchHeroes } = useActions();
 
     const data = useSelector(state => state.heroes.data);
-    const currentPageData = useSelector(state => state.heroes.currentPageData);
-
-    // const page = useSelector(state => state.heroes.page);
     const count = useSelector(state => state.heroes.count);
     const loading = useSelector(state => state.heroes.loading);
     const error = useSelector(state => state.heroes.error);
 
-
     useEffect(() => {
-        fetchHeroes();
-    }, []);
-
+        fetchHeroes(state);
+    }, [state]);
 
     return (
         <div className="heroes-page-wrap">
@@ -38,11 +33,10 @@ const HeroesPage: React.FC<PropsType> = () => {
                 count={count}
                 state={state}
                 dispatch={dispatch}
-                data={data}
             />
             <div className="heroes-wrap container">
                 <div className="cards">
-                    {currentPageData.map( item => (<HeroCard key={item.id} data={item} />))}
+                    {data.map( item => (<HeroCard key={item.id} data={item} />))}
                 </div>
                 {loading && "loading..."}
                 {error}
@@ -52,4 +46,4 @@ const HeroesPage: React.FC<PropsType> = () => {
 }
 
 
-export default HeroesPage;
+export default HeroesPageServer;

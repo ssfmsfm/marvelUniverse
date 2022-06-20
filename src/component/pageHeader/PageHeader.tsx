@@ -49,7 +49,7 @@ const PageHeader = () => {
                         <>
                             <button className="nav-favo" onClick={() => navToFavo()}>
                                 <FavoIcon className="nav-favo-icon" />
-                                <span></span>
+                                <span>{t("favourites")}</span>
                             </button>
                             <button className="page-header-auth" onClick={logout}>
                                 <LogoutIcon className="page-header-auth-icon" />

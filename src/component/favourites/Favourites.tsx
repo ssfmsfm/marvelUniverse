@@ -16,7 +16,7 @@ type PropsType = {};
 const Favourites: React.FC<PropsType> = () => {
 
     // const [state, dispatch] = useReducer(HeroesReducer, initialState)
-    const { fetchHeroes } = useActions();
+    const { fetchAllHeroes } = useActions();
 
     const data = useSelector(state => state.heroes.data);
     const favoHero = useSelector(state => state.heroes.favoHero);
@@ -32,7 +32,7 @@ const Favourites: React.FC<PropsType> = () => {
 
 
     useEffect(() => {
-        fetchHeroes();
+        fetchAllHeroes();
     }, []);
 
 

@@ -9,6 +9,7 @@ const LINKS = [
     {url: "/comics", text: "comics"},
     {url: "/movies", text: "movies"},
     {url: "/history", text: "history"},
+    // {url: "/favourites", text: "favourites"}
 ];
 
 
@@ -18,13 +19,17 @@ const PageHeaderNav = () => {
 
     const href: string = window.location.href;
     let currentURI: string = "";
+    let temp = href.slice(href.lastIndexOf("/"));
     LINKS.forEach(link =>
-        link.url === href.slice(href.lastIndexOf("/"))
+        link.url === temp
         ?
         currentURI = link.text
         :
         null
     )
+    if(temp === "/favourites") {
+        currentURI = "favourites";
+    }
 
     return (
         <div className="page-header-nav-wrap">

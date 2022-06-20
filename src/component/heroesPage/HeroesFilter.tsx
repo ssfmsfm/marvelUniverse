@@ -1,44 +1,41 @@
-import React, { useEffect } from 'react';
-import { MenuItem, Select, SelectChangeEvent } from '@mui/material';
-import { HeroesFilterTypes, HeroesOrder } from './HeroesFilterTypes';
+import React from 'react';
+import { MenuItem, Pagination, Select, SelectChangeEvent } from '@mui/material';
+import { HeroesFilterTypes, HeroesOrderServer } from './HeroesFilterTypes';
 import { useActions } from '../hooks/useActions';
-import HeroType from '../../types/HeroType';
-import CustomPagination from '../pagination/Pagination';
 import useTranslate from '../hooks/useTranslate';
 
 
 type PropsType = {
     count: number
-    state: HeroesFilterTypes
+    state: HeroesFilterTypes,
     dispatch: any
-    data: HeroType[]
 };
 
-const HeroesFilter: React.FC<PropsType> = ( { count, state, dispatch, data } ) => {
+const HeroesFilter: React.FC<PropsType> = ( { count, state, dispatch } ) => {
 
     const { t } = useTranslate();
-    const { setName, setPage, setPageSize, sortData } = useActions();
+    const { setName, setPage, setLimit, setOrdering } = useActions();
 
     const updateName = (value: string) => {
         dispatch(setName(value));
     };
 
     const handleChangeOrdering = (event: SelectChangeEvent) => {
-        dispatch(sortData({ ordering: event.target.value as HeroesOrder, data: data }));
+        dispatch(setOrdering(event.target.value as HeroesOrderServer))
     };
 
-    const handleChangePageSize = (event: SelectChangeEvent) => {
-        dispatch(setPageSize(+event.target.value));
+    const handleChangeLimit = (event: SelectChangeEvent) => {
+        dispatch(setLimit(+event.target.value));
     };
 
     const handleChangePage = (event: React.ChangeEvent<unknown>, value: number) => {
         dispatch(setPage(value));
     };
 
-    useEffect(() => {
-        dispatch(setName);
-        dispatch(setPageSize);
-    }, [])
+    // useEffect(() => {
+    //     dispatch(setName);
+    //     dispatch(setPageSize);
+    // }, [])
 
 
     return (
@@ -49,6 +46,7 @@ const HeroesFilter: React.FC<PropsType> = ( { count, state, dispatch, data } ) =
                         className="input-search"
                         type="text"
                         placeholder={t("searchByName")}
+                        value={state.name?.toString()}
                         onChange={event => updateName(event.target.value)}
                     />
                 </div>
@@ -59,10 +57,10 @@ const HeroesFilter: React.FC<PropsType> = ( { count, state, dispatch, data } ) =
                         value={state.ordering}
                         onChange={handleChangeOrdering}
                     >
-                        <MenuItem value={HeroesOrder.idAsc}>{t("idAsc")}</MenuItem>
-                        <MenuItem value={HeroesOrder.idDesc}>{t("idDesc")}</MenuItem>
-                        <MenuItem value={HeroesOrder.nameAsc}>{t("nameAsc")}</MenuItem>
-                        <MenuItem value={HeroesOrder.nameDesc}>{t("nameDesc")}</MenuItem>
+                        <MenuItem value={HeroesOrderServer.nameAsc}>{t("nameAsc")}</MenuItem>
+                        <MenuItem value={HeroesOrderServer.nameDesc}>{t("nameDesc")}</MenuItem>
+                        <MenuItem value={HeroesOrderServer.modiAsc}>{t("modiAsc")}</MenuItem>
+                        <MenuItem value={HeroesOrderServer.modiDesc}>{t("modiDesc")}</MenuItem>
                     </Select>
                 </div>
 
@@ -70,8 +68,8 @@ const HeroesFilter: React.FC<PropsType> = ( { count, state, dispatch, data } ) =
                     <span>{t("numberOfHeroes")}</span>
                     <Select
                         className="select"
-                        value={state.pageSize.toString()}
-                        onChange={handleChangePageSize}
+                        value={state.limit.toString()}
+                        onChange={handleChangeLimit}
                     >
                         <MenuItem value={8}>8</MenuItem>
                         <MenuItem value={16}>16</MenuItem>
@@ -79,11 +77,11 @@ const HeroesFilter: React.FC<PropsType> = ( { count, state, dispatch, data } ) =
                     </Select>
                 </div>
             </div>
-            <CustomPagination
-                    count={count}
-                    page={state.page}
-                    pageSize={state.pageSize}
-                    handleChangePage={handleChangePage}
+            <Pagination
+                className="pagination"
+                page={state.page}
+                onChange={handleChangePage}
+                count={Math.ceil(count / state.limit)}
             />
         </div>
     )

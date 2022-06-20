@@ -7,6 +7,13 @@ export enum HeroesOrder {
     nameDesc = "-name",
 }
 
+export enum HeroesOrderServer {
+    nameAsc = "name",
+    nameDesc = "-name",
+    modiAsc = "modified",
+    modiDesc = "-modified"
+}
+
 
 export type SortFilters = {
     data: HeroType[]
@@ -21,9 +28,16 @@ export type SortFilters = {
 //     currentPageData: HeroType[]
 // }
 
+// export type HeroesFilterTypes = {
+//     name?: string,
+//     pageSize: number
+//     page: number
+//     ordering: HeroesOrder
+// }
+
 export type HeroesFilterTypes = {
+    page: number,
+    limit: number,
     name?: string,
-    pageSize: number
-    page: number
-    ordering: HeroesOrder
+    ordering: HeroesOrderServer,
 }
