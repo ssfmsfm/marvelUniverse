@@ -1,19 +1,18 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import Form from "../ui/form/Form";
 import { useActions } from "../hooks/useActions";
 import { useDispatch } from "../hooks/useDispatch";
+import { useSelector } from "../hooks/useSelector";
+import useTranslate from "../hooks/useTranslate";
+import { loginUser } from "../../store/auth/authThunks";
+import Form from "../ui/form/Form";
+import Button from "../ui/button/Button";
+import FormTextField from "../ui/formTextField/FormTextField";
 import FormValuesType from "../../types/FormValuesType";
 import { getEmailError, getPasswordError } from "../../helpers/validation";
-import { useSelector } from "../hooks/useSelector";
-import FormTextField from "../ui/formTextField/FormTextField";
-import Button from "../ui/button/Button";
-import { loginUser } from "../../store/auth/authThunks";
 import Storage from "../../helpers/Storage";
 
 import "./Auth.scss";
-import useTranslate from "../hooks/useTranslate";
-
 
 const Auth: React.FC = () => {
     const { t } = useTranslate();
@@ -43,7 +42,7 @@ const Auth: React.FC = () => {
             }))
             .then(() => {
                 if(Storage.get("userLogged", false)) {
-                    navigate("/");
+                    navigate(-2);
                 }
             })
         }

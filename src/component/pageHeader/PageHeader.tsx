@@ -1,13 +1,14 @@
 import { useNavigate } from "react-router-dom";
-import { ReactComponent as LoginIcon } from "../../assets/login.svg";
-import { ReactComponent as LogoutIcon } from "../../assets/logout.svg";
-import { ReactComponent as FavoIcon } from "../../assets/favo.svg";
 import { useActions } from "../hooks/useActions";
 import { useSelector } from "../hooks/useSelector";
+import useTranslate from "../hooks/useTranslate";
+import PageHeaderNav from "./pageHeaderNav/PageHeaderNav";
+import { ReactComponent as LoginIcon } from "../../assets/auth/login.svg";
+import { ReactComponent as LogoutIcon } from "../../assets/auth/logout.svg";
+import { ReactComponent as FavoIcon } from "../../assets/auth/favo.svg";
+import { ReactComponent as LogoIcon } from "../../assets/logo/marvel-logo.svg";
 
 import './PageHeader.scss';
-import PageHeaderNav from "./pageHeaderNav/PageHeaderNav";
-import useTranslate from "../hooks/useTranslate";
 
 const PageHeader = () => {
 
@@ -32,7 +33,9 @@ const PageHeader = () => {
     return (
         <div className="page-header-wrap">
             <div className="container">
-                <a href="/" className="logo-icon" />
+                <a href="/" className="logo-icon">
+                    <LogoIcon className="logo-icon-svg" />
+                </a>
                 <div className="buttons-header-wrap">
                     <button
                         className={`language ${nextLang === "en" ? "en" : "ru"}`}

@@ -1,7 +1,6 @@
-
-
-import { Link } from 'react-router-dom';
+import { Link, useLocation } from 'react-router-dom';
 import useTranslate from '../../hooks/useTranslate';
+
 import './PageHeaderNav.scss';
 
 const LINKS = [
@@ -9,25 +8,22 @@ const LINKS = [
     {url: "/comics", text: "comics"},
     {url: "/movies", text: "movies"},
     {url: "/history", text: "history"},
-    // {url: "/favourites", text: "favourites"}
 ];
 
 
 const PageHeaderNav = () => {
 
     const { t } = useTranslate();
-
-    const href: string = window.location.href;
+    const href = useLocation().pathname;
     let currentURI: string = "";
-    let temp = href.slice(href.lastIndexOf("/"));
     LINKS.forEach(link =>
-        link.url === temp
+        link.url === href
         ?
         currentURI = link.text
         :
         null
     )
-    if(temp === "/favourites") {
+    if(href === "/favourites") {
         currentURI = "favourites";
     }
 

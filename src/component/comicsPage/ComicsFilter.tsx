@@ -1,35 +1,36 @@
 import React from 'react';
 import { useActions } from '../hooks/useActions';
 import useTranslate from '../hooks/useTranslate';
-import { HeroesFilterTypes, HeroesOrder } from './HeroesFilterTypes';
+import { ComicsFilterTypes, ComicsOrder } from './ComicsFilterTypes';
 import { MenuItem, Pagination, Select, SelectChangeEvent } from '@mui/material';
+
 
 
 type PropsType = {
     count: number
-    state: HeroesFilterTypes,
+    state: ComicsFilterTypes,
     dispatch: any
 };
 
-const HeroesFilter: React.FC<PropsType> = ( { count, state, dispatch } ) => {
+const ComicsFilter: React.FC<PropsType> = ( { count, state, dispatch } ) => {
 
     const { t } = useTranslate();
-    const { setHeroesName, setHeroesPage, setHeroesLimit, setHeroesOrdering } = useActions();
+    const { setComicsTitle, setComicsPage, setComicsLimit, setComicsOrdering } = useActions();
 
-    const updateName = (value: string) => {
-        dispatch(setHeroesName(value));
+    const updateTitle = (value: string) => {
+        dispatch(setComicsTitle(value));
     };
 
     const handleChangeOrdering = (event: SelectChangeEvent) => {
-        dispatch(setHeroesOrdering(event.target.value as HeroesOrder))
+        dispatch(setComicsOrdering(event.target.value as ComicsOrder))
     };
 
     const handleChangeLimit = (event: SelectChangeEvent) => {
-        dispatch(setHeroesLimit(+event.target.value));
+        dispatch(setComicsLimit(+event.target.value));
     };
 
     const handleChangePage = (event: React.ChangeEvent<unknown>, value: number) => {
-        dispatch(setHeroesPage(value));
+        dispatch(setComicsPage(value));
     };
 
 
@@ -40,9 +41,9 @@ const HeroesFilter: React.FC<PropsType> = ( { count, state, dispatch } ) => {
                     <input
                         className="input-search"
                         type="text"
-                        placeholder={t("searchByName")}
-                        value={state.searchName?.toString()}
-                        onChange={event => updateName(event.target.value)}
+                        placeholder={t("searchByTitle")}
+                        value={state.searchTitle?.toString()}
+                        onChange={event => updateTitle(event.target.value)}
                     />
                 </div>
                 <div className="change-ordering control">
@@ -52,15 +53,15 @@ const HeroesFilter: React.FC<PropsType> = ( { count, state, dispatch } ) => {
                         value={state.ordering}
                         onChange={handleChangeOrdering}
                     >
-                        <MenuItem value={HeroesOrder.nameAsc}>{t("nameAsc")}</MenuItem>
-                        <MenuItem value={HeroesOrder.nameDesc}>{t("nameDesc")}</MenuItem>
-                        <MenuItem value={HeroesOrder.modiAsc}>{t("modiAsc")}</MenuItem>
-                        <MenuItem value={HeroesOrder.modiDesc}>{t("modiDesc")}</MenuItem>
+                        <MenuItem value={ComicsOrder.titleAsc}>{t("titleAsc")}</MenuItem>
+                        <MenuItem value={ComicsOrder.titleDesc}>{t("titleDesc")}</MenuItem>
+                        <MenuItem value={ComicsOrder.modiAsc}>{t("modiAsc")}</MenuItem>
+                        <MenuItem value={ComicsOrder.modiDesc}>{t("modiDesc")}</MenuItem>
                     </Select>
                 </div>
 
-                <div className="hero-on-page control">
-                    <span>{t("numberOfHeroes")}</span>
+                <div className="comics-on-page control">
+                    <span>{t("numberOfComics")}</span>
                     <Select
                         className="select"
                         value={state.limit.toString()}
@@ -83,4 +84,4 @@ const HeroesFilter: React.FC<PropsType> = ( { count, state, dispatch } ) => {
 }
 
 
-export default HeroesFilter;
+export default ComicsFilter;

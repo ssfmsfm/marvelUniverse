@@ -4,7 +4,6 @@ import ProfileType from "../../types/ProfileType";
 import { registerUser, loginUser } from "./authThunks";
 
 type StoreAuthType = {
-    // refresh?: string,
     profile: ProfileType,
     loading: boolean,
     error?: boolean
@@ -12,7 +11,6 @@ type StoreAuthType = {
 }
 
 const initialState: StoreAuthType = {
-    // refresh: Storage.get("refresh", undefined),
     profile: {
         email: "",
         id: "",
@@ -27,10 +25,6 @@ const AuthSlice = createSlice({
     name: "auth",
     initialState,
     reducers: {
-        // setProfile(state, { payload }: PayloadAction<ProfileType>) {
-        //     state.profile = payload;
-
-        // },
         logout(state) {
             state.profile = {
                 email: "",
@@ -58,9 +52,6 @@ const AuthSlice = createSlice({
             })
             .addCase(registerUser.fulfilled, (state, {payload}: PayloadAction<ProfileType>) => {
                 state.profile = payload;
-                // state.profile.email = payload.email;
-                // state.profile.id = payload.id;
-                // state.profile.refresh = payload.refresh;
                 state.logged = true;
                 state.loading = false;
                 Storage.set("userLogged", true);
@@ -77,9 +68,6 @@ const AuthSlice = createSlice({
             })
             .addCase(loginUser.fulfilled, (state, {payload}: PayloadAction<ProfileType>) => {
                 state.profile = payload;
-                // state.profile.email = payload.email;
-                // state.profile.id = payload.id;
-                // state.profile.refresh = payload.refresh;
                 state.logged = true;
                 state.loading = false;
                 Storage.set("userLogged", true);
@@ -91,6 +79,7 @@ const AuthSlice = createSlice({
     }
 });
 
-export const AuthActions = AuthSlice.actions;
-
 export const AuthReducer = AuthSlice.reducer;
+export const AuthActions = {
+    ...AuthSlice.actions
+}

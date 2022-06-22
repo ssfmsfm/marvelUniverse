@@ -1,5 +1,5 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit"
-import { HeroesOrderServer } from "../../component/heroesPage/HeroesFilterTypes";
+import { HeroesOrder } from "../../component/heroesPage/HeroesFilterTypes";
 import Storage from "../../helpers/Storage";
 import HeroType from "../../types/HeroType";
 import { fetchHeroes, fetchAllHeroes } from "./heroesThunks";
@@ -13,8 +13,8 @@ type StoreHeroesType = {
     favoHero: number[],
     page: number,
     limit: number,
-    ordering: HeroesOrderServer,
-    name?: string,
+    ordering: HeroesOrder,
+    searchName?: string,
 }
 
 export const initialState: StoreHeroesType = {
@@ -24,23 +24,23 @@ export const initialState: StoreHeroesType = {
     favoHero: Storage.get("favoHero", []),
     page: 1,
     limit: 8,
-    ordering: HeroesOrderServer.nameAsc,
-    name: "",
+    ordering: HeroesOrder.nameAsc,
+    searchName: "",
 }
 
 const heroesSlice = createSlice({
     name: "heroes",
     initialState,
     reducers: {
-        setPostsLoading: (state, { payload }: PayloadAction<boolean>) => {
-            state.loading = payload;
-        },
-        setPostsError: (state, { payload }: PayloadAction<string | undefined>) => {
-            state.error = payload;
-        },
+        // setHeroesLoading: (state, { payload }: PayloadAction<boolean>) => {
+        //     state.loading = payload;
+        // },
+        // setHeroesError: (state, { payload }: PayloadAction<string | undefined>) => {
+        //     state.error = payload;
+        // },
         setName(state, { payload }: PayloadAction<string>) {
             state.page = 1;
-            state.name = payload;
+            state.searchName = payload;
         },
         setLimit(state, { payload }: PayloadAction<number>) {
             state.page = 1;
@@ -49,21 +49,22 @@ const heroesSlice = createSlice({
         setPage(state, { payload }: PayloadAction<number>) {
             state.page = payload;
         },
-        setOrdering(state, { payload }: PayloadAction<HeroesOrderServer>) {
-            // state.page;
+        setOrdering(state, { payload }: PayloadAction<HeroesOrder>) {
+            state.page = 1;
             state.ordering = payload;
         },
-        markHero: (state, { payload: postId }: PayloadAction<number>) => {
-            if (state.favoHero.includes(postId)) {
-                state.favoHero = state.favoHero.filter(id => id !==postId);
+        markHero: (state, { payload: heroId }: PayloadAction<number>) => {
+            if (state.favoHero.includes(heroId)) {
+                state.favoHero = state.favoHero.filter(id => id !==heroId);
             } else {
-                state.favoHero.push(postId);
+                state.favoHero.push(heroId);
             }
 
             Storage.set("favoHero", state.favoHero);
         }
     },
     extraReducers: builder => {
+
         builder.addCase(fetchHeroes.pending, (state) => {
             state.loading = true;
             state.error = undefined;
@@ -79,7 +80,23 @@ const heroesSlice = createSlice({
             state.loading = false;
             state.data = payload.data;
             state.count = payload.count;
-            console.log(state.data);
+        });
+
+        builder.addCase(fetchAllHeroes.pending, (state) => {
+            state.loading = true;
+            state.error = undefined;
+            state.data = [];
+        });
+
+        builder.addCase(fetchAllHeroes.rejected, (state, { payload }) => {
+            state.loading = false;
+            state.error = payload;
+        });
+
+        builder.addCase(fetchAllHeroes.fulfilled, (state, { payload }) => {
+            state.loading = false;
+            state.data = payload.data;
+            state.count = payload.count;
         });
     }
 });

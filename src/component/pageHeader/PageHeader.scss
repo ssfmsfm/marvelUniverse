@@ -32,10 +32,11 @@
         top: calc(50% - 65px);
         left: calc(50% - 70px);
         height: 50px;
-        width: 200px;
-        background-image: url("../../assets/logo.jpg");
-        background-size: contain;
-        background-repeat: no-repeat;
+
+        &-svg {
+            height: 100%;
+            width: auto;
+        }
     }
 
     .buttons-header-wrap {
@@ -49,14 +50,13 @@
             width: 30px;
             height: 20px;
             cursor: pointer;
-            
 
             &.en {
-                background: url("../../assets/usa.png");
+                background: url("../../assets/language/usa.png");
             }
 
             &.ru {
-                background: url("../../assets/russia.png");
+                background: url("../../assets/language/russia.png");
             }
 
             &.en, &.ru {

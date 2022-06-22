@@ -6,17 +6,14 @@ import PageHeader from "../pageHeader/PageHeader";
 import HeroesFilter from "./HeroesFilter";
 import { HeroesFilterReducer, initialState } from "../../store/heroesPage/heroesFilterSlice";
 
-
-import './HeroesPage.scss';
-
+import '../../App.scss';
 
 type PropsType = {};
 
-const HeroesPageServer: React.FC<PropsType> = () => {
+const HeroesPage: React.FC<PropsType> = () => {
 
     const [state, dispatch] = useReducer(HeroesFilterReducer, initialState);
     const { fetchHeroes } = useActions();
-
     const data = useSelector(state => state.heroes.data);
     const count = useSelector(state => state.heroes.count);
     const loading = useSelector(state => state.heroes.loading);
@@ -27,14 +24,14 @@ const HeroesPageServer: React.FC<PropsType> = () => {
     }, [state]);
 
     return (
-        <div className="heroes-page-wrap">
+        <div className="results-page-wrap">
             <PageHeader />
             <HeroesFilter
                 count={count}
                 state={state}
                 dispatch={dispatch}
             />
-            <div className="heroes-wrap container">
+            <div className="results-wrap container">
                 <div className="cards">
                     {data.map( item => (<HeroCard key={item.id} data={item} />))}
                 </div>
@@ -46,4 +43,4 @@ const HeroesPageServer: React.FC<PropsType> = () => {
 }
 
 
-export default HeroesPageServer;
+export default HeroesPage;

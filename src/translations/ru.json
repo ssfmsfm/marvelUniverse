@@ -25,13 +25,15 @@
     "history": "История",
     "favourites": "Избранное",
 
-    "searchByName": "Поиск по имени",
+    "searchByName": "Искать по имени",
+    "searchByTitle": "Искать по названию",
     "changeOrdering": "Упорядочить по",
-    "idAsc": "ID ↑",
-    "idDesc": "ID ↓",
+    "titleAsc": "Названию ↑",
+    "titleDesc": "Названию ↓",
     "nameAsc": "Имени ↑",
     "nameDesc": "Имени ↓",
     "modiAsc": "Изменению ↑",
     "modiDesc": "Изменению ↓",
-    "numberOfHeroes": "Героев на странице"
+    "numberOfHeroes": "Героев на странице",
+    "numberOfComics": "Комиксов на странице"
 }
