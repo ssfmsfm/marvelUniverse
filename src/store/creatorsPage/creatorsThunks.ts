@@ -1,31 +1,31 @@
 import axios from 'axios';
-import ComicType from "../../types/ComicType";
+import CreatorType from "../../types/CreatorType";
 import { createAsyncThunk } from '@reduxjs/toolkit';
 import { API_KEY, BASE_URL } from '../../helpers/apikey';
-import { ComicsFilterTypes } from '../../component/comicsPage/ComicsFilterTypes';
+import { CreatorsFilterTypes } from '../../component/creatorsPage/CreatorsFilterTypes';
 
-const URI = "/comics";
+const URI = "/creators";
 
-type FetchComicsType = {
-    data: ComicType[],
+type FetchCreatorsType = {
+    data: CreatorType[],
     count: number,
 }
 
-export const fetchAllComics = createAsyncThunk<
-        FetchComicsType,
+export const fetchAllCreators = createAsyncThunk<
+        FetchCreatorsType,
         undefined,
         { rejectValue: string }
     >(
-    "comics/fetchAllComics",
+    "creators/fetchAllCreators",
     async (_, thunkApi) => {
 
-        let url = `${BASE_URL}${URI}?orderBy=title&limit=100&${API_KEY}`;
+        let url = `${BASE_URL}${URI}?limit=100&${API_KEY}`;
 
         try {
             const response = await axios.get(url)
             .then(res => res.data);
             return {
-                data: response.data.results as ComicType[],
+                data: response.data.results as CreatorType[],
                 count: response.data.count as number,
             }
         } catch(e: any) {
@@ -34,25 +34,25 @@ export const fetchAllComics = createAsyncThunk<
     }
 );
 
-export const fetchComics = createAsyncThunk<
-        FetchComicsType,
-        ComicsFilterTypes,
+export const fetchCreators = createAsyncThunk<
+        FetchCreatorsType,
+        CreatorsFilterTypes,
         { rejectValue: string }
     >(
-    "comics/fetchComics",
-    async ( { page, limit, searchTitle, ordering}, thunkApi) => {
+    "creators/fetchCreators",
+    async ( { page, limit, searchName, ordering}, thunkApi) => {
 
         const offset = limit * (page - 1);
         let url = `${BASE_URL}${URI}?limit=${limit}&offset=${offset}&orderBy=${ordering}`;
-        if(searchTitle) {
-            url += `&titleStartsWith=${searchTitle}`;
+        if(searchName) {
+            url += `&nameStartsWith=${searchName}`;
         }
         url += `&${API_KEY}`;
         try {
             const response = await axios.get(url)
             .then(res => res.data);
             return {
-                data: response.data.results as ComicType[],
+                data: response.data.results as CreatorType[],
                 count: response.data.total as number,
             }
         } catch(e: any) {

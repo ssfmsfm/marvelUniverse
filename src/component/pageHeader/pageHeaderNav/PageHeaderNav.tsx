@@ -6,8 +6,8 @@ import './PageHeaderNav.scss';
 const LINKS = [
     {url: "/heroes", text: "heroes"},
     {url: "/comics", text: "comics"},
-    {url: "/movies", text: "movies"},
-    {url: "/history", text: "history"},
+    {url: "/events", text: "events"},
+    {url: "/creators", text: "creators"},
 ];
 
 
@@ -17,11 +17,11 @@ const PageHeaderNav = () => {
     const href = useLocation().pathname;
     let currentURI: string = "";
     LINKS.forEach(link =>
-        link.url === href
+            href.includes(link.url)
         ?
-        currentURI = link.text
+            currentURI = link.text
         :
-        null
+            null
     )
     if(href === "/favourites") {
         currentURI = "favourites";

@@ -1,31 +1,31 @@
 import axios from 'axios';
 import { createAsyncThunk } from '@reduxjs/toolkit';
-import HeroType from "../../types/HeroType";
-import { HeroesFilterTypes } from '../../component/heroesPage/HeroesFilterTypes';
+import EventType from "../../types/EventType";
+import { EventsFilterTypes } from '../../component/eventsPage/EventsFilterTypes';
 import { API_KEY, BASE_URL } from '../../helpers/apikey';
 
-const URI = "/characters";
+const URI = "/events";
 
-type FetchHeroesType = {
-    data: HeroType[],
+type FetchEventsType = {
+    data: EventType[],
     count: number,
 }
 
-export const fetchAllHeroes = createAsyncThunk<
-    FetchHeroesType,
+export const fetchAllEvents = createAsyncThunk<
+    FetchEventsType,
     undefined,
     { rejectValue: string }
     >(
-    "heroes/fetchAllHeroes",
+    "events/fetchAllEvents",
     async (_, thunkApi) => {
 
-        let url = `${BASE_URL}${URI}?orderBy=name&limit=100&${API_KEY}`;
+        let url = `${BASE_URL}${URI}?limit=100&${API_KEY}`;
 
         try {
             const response = await axios.get(url)
             .then(res => res.data);
             return {
-                data: response.data.results as HeroType[],
+                data: response.data.results as EventType[],
                 count: response.data.count as number,
             }
         } catch {
@@ -34,14 +34,14 @@ export const fetchAllHeroes = createAsyncThunk<
     }
 );
 
-export const fetchHeroes = createAsyncThunk
+export const fetchEvents = createAsyncThunk
     <
-        FetchHeroesType,
-        HeroesFilterTypes,
+        FetchEventsType,
+        EventsFilterTypes,
         { rejectValue: string }
     >
     (
-    "heroes/fetchHeroes",
+    "events/fetchEvents",
     async ({ page, limit, searchName, ordering }, thunkApi) => {
 
         const offset = limit * (page - 1);
@@ -54,7 +54,7 @@ export const fetchHeroes = createAsyncThunk
             const response = await axios.get(url)
             .then(res => res.data);
             return {
-                data: response.data.results as HeroType[],
+                data: response.data.results as EventType[],
                 count: response.data.total as number,
             }
         } catch {

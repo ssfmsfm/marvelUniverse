@@ -7,8 +7,8 @@ import "./MainNav.scss";
 const LINKS = [
     {url: "/heroes", text: "heroes"},
     {url: "/comics", text: "comics"},
-    {url: "/movies", text: "movies"},
-    {url: "/history", text: "history"},
+    {url: "/events", text: "events"},
+    {url: "/creators", text: "creators"},
 ];
 
 const MainNav = () => {

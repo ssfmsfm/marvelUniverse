@@ -32,12 +32,6 @@ const comicsSlice = createSlice({
     name: "comics",
     initialState,
     reducers: {
-        // setComicsLoading: (state, { payload }: PayloadAction<boolean>) => {
-        //     state.loading = payload;
-        // },
-        // setComicsError: (state, { payload }: PayloadAction<string | undefined>) => {
-        //     state.error = payload;
-        // },
         setComicsTitle(state, { payload }: PayloadAction<string>) {
             state.page = 1;
             state.searchTitle = payload;
@@ -55,7 +49,7 @@ const comicsSlice = createSlice({
         },
         markComic: (state, { payload: comicId }: PayloadAction<number>) => {
             if (state.favoComics.includes(comicId)) {
-                state.favoComics = state.favoComics.filter(id => id !==comicId);
+                state.favoComics = state.favoComics.filter(id => id !== comicId);
             } else {
                 state.favoComics.push(comicId);
             }

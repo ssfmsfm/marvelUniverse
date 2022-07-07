@@ -7,28 +7,43 @@ import HeroCard from "../heroesPage/heroCard/HeroCard";
 
 import '../../App.scss';
 import useTranslate from "../hooks/useTranslate";
+import ComicCard from "../comicsPage/comicCard/ComicCard";
+import EventCard from "../eventsPage/eventCard/EventCard";
+import CreatorCard from "../creatorsPage/creatorCard/CreatorCard";
 // import { Box, Tab, Tabs, TabPanel } from "@mui/material";
 
 type PropsType = {};
 
 const Favourites: React.FC<PropsType> = () => {
 
-    const { fetchAllHeroes } = useActions();
+    const { fetchAllHeroes, fetchAllComics, fetchAllEvents, fetchAllCreators } = useActions();
     const { t } = useTranslate();
 
-    const data = useSelector(state => state.heroes.data);
-    const favoHero = useSelector(state => state.heroes.favoHero);
+    const dataHeroes = useSelector(state => state.heroes.data);
+    const favoHeroes = useSelector(state => state.heroes.favoHeroes);
+
+    const dataComics = useSelector(state => state.comics.data);
+    const favoComics = useSelector(state => state.comics.favoComics);
+
+    const dataEvents = useSelector(state => state.events.data);
+    const favoEvents = useSelector(state => state.events.favoEvents);
+
+    const dataCreators = useSelector(state => state.creators.data);
+    const favoCreators = useSelector(state => state.creators.favoCreators);
+
     const loading = useSelector(state => state.heroes.loading);
     const error = useSelector(state => state.heroes.error);
 
-    const filteredData = data.filter(hero => favoHero.includes(hero.id));
-
-    // const handleChange = () => {
-
-    // }
+    const filteredDataHeroes = dataHeroes.filter(hero => favoHeroes.includes(hero.id));
+    const filteredDataComics = dataComics.filter(comic => favoComics.includes(comic.id));
+    const filteredDataEvents = dataEvents.filter(event => favoEvents.includes(event.id));
+    const filteredDataCreators = dataCreators.filter(creator => favoCreators.includes(creator.id));
 
     useEffect(() => {
         fetchAllHeroes();
+        fetchAllComics();
+        fetchAllEvents();
+        fetchAllCreators();
     }, []);
 
 
@@ -36,21 +51,24 @@ const Favourites: React.FC<PropsType> = () => {
         <div className="results-page-wrap">
             <PageHeader />
             <div className="results-wrap container">
-                {/* {
-                    filteredData
-                ?
-                    <> */}
-                        <div className="cards">
-                            {filteredData.map( item => (<HeroCard key={item.id} data={item} />))}
-                        </div>
-                        {loading && "loading..."}
-                        {error}
-                    {/* </>
-                :
-                    <p>
-                        {t("emptyFavoHeroes")}
-                    </p>
-                } */}
+                <h3>Heroes</h3>
+                <div className="cards">
+                    {filteredDataHeroes.map( item => (<HeroCard key={item.id} data={item} />))}
+                </div>
+                <h3>Comics</h3>
+                <div className="cards">
+                    {filteredDataComics.map( item => (<ComicCard key={item.id} data={item} />))}
+                </div>
+                <h3>Events</h3>
+                <div className="cards">
+                    {filteredDataEvents.map( item => (<EventCard key={item.id} data={item} />))}
+                </div>
+                <h3>Creators</h3>
+                <div className="cards">
+                    {filteredDataCreators.map( item => (<CreatorCard key={item.id} data={item} />))}
+                </div>
+                {loading && "loading..."}
+                {error}
             </div>
         </div>
     )
@@ -58,92 +76,77 @@ const Favourites: React.FC<PropsType> = () => {
 
 export default Favourites;
 
-// import * as React from 'react';
-// import SwipeableViews from 'react-swipeable-views';
-// import { useTheme } from '@mui/material/styles';
-// import AppBar from '@mui/material/AppBar';
+
+// import React, { useEffect, useState } from 'react';
+// import Box from '@mui/material/Box';
 // import Tabs from '@mui/material/Tabs';
 // import Tab from '@mui/material/Tab';
-// import Typography from '@mui/material/Typography';
-// import Box from '@mui/material/Box';
+// import { useSelector } from '../hooks/useSelector';
+// import { useActions } from '../hooks/useActions';
+// import HeroCard from '../heroesPage/heroCard/HeroCard';
+// import ComicCard from '../comicsPage/comicCard/ComicCard';
 
-// interface TabPanelProps {
-//     children?: React.ReactNode;
-//     dir?: string;
-//     index: number;
-//     value: number;
-// }
+// import '../../App.scss';
+// import PageHeader from '../pageHeader/PageHeader';
 
-// function TabPanel(props: TabPanelProps) {
-//     const { children, value, index, ...other } = props;
+// type PropsType = {};
+
+// const Favourites: React.FC<PropsType> = () => {
+//     const { fetchAllHeroes, fetchAllComics } = useActions();
+
+//     const [value, setValue] = useState("comics");
+
+//     useEffect(() => {
+//         fetchAllHeroes();
+//         fetchAllComics();
+//     }, []);
+
+//     const favoHeroes = useSelector(state => state.heroes.favoHeroes);
+//     const favoComics = useSelector(state => state.comics.favoComics);
+//     const dataHeroes = useSelector(state => state.heroes.data);
+//     const dataComics = useSelector(state => state.comics.data);
+//     console.log(dataComics);
+
+//     const filteredDataHeroes = dataHeroes.filter(hero => favoHeroes.includes(hero.id));
+//     const filteredDataComics = dataComics.filter(comic => favoComics.includes(comic.id));
+//     // let filteredDataHeroes = [];
+//     // let filteredData: any = [];
+
+//     const handleChange = (event: React.SyntheticEvent, newValue: string) => {
+//         setValue(newValue);
+//         console.log(filteredDataComics);
+//     }
+
+
 
 //     return (
-//         <div
-//         role="tabpanel"
-//         hidden={value !== index}
-//         id={`full-width-tabpanel-${index}`}
-//         aria-labelledby={`full-width-tab-${index}`}
-//         {...other}
-//         >
-//         {value === index && (
-//             <Box sx={{ p: 3 }}>
-//             <Typography>{children}</Typography>
-//             </Box>
-//         )}
+//         <div className="results-page-wrap">
+//                 <PageHeader />
+//                 <div className="results-wrap container">
+//                     <Box sx={{ width: '100%', bgcolor: 'background.paper' }}>
+//                         <Tabs value={value} onChange={handleChange} centered>
+//                             <Tab label="Heroes" value="heroes"/>
+//                             <Tab label="Comics" value="comics"/>
+//                             {/* <Tab label="Stories" value="stories"/> */}
+//                         </Tabs>
+//                         <div className="cards">
+//                             {
+//                                 value === "heroes"
+//                             ?
+//                                 <>
+//                                         {filteredDataHeroes.map( item => (<HeroCard key={item.id} data={item} />))}
+//                                 </>
+//                             :
+//                                 <>
+//                                     {filteredDataComics.map( item => (<ComicCard key={item.id} data={item} />))}
+//                                 </>
+//                             }
+//                         </div>
+//                     </Box>
+//                 </div>
 //         </div>
 //     );
-//     }
-
-//     function a11yProps(index: number) {
-//         return {
-//             id: `full-width-tab-${index}`,
-//             'aria-controls': `full-width-tabpanel-${index}`,
-//         };
-//     }
-
-// export default function FullWidthTabs() {
-//     const theme = useTheme();
-//     const [value, setValue] = React.useState(0);
-
-//     const handleChange = (event: React.SyntheticEvent, newValue: number) => {
-//         setValue(newValue);
-//     };
-
-//     const handleChangeIndex = (index: number) => {
-//         setValue(index);
-//     };
-
-//     return (
-//         <Box sx={{ bgcolor: 'background.paper', width: 500 }}>
-//         <AppBar position="static">
-//             <Tabs
-//             value={value}
-//             onChange={handleChange}
-//             indicatorColor="secondary"
-//             textColor="inherit"
-//             variant="fullWidth"
-//             aria-label="full width tabs example"
-//             >
-//             <Tab label="Item One" {...a11yProps(0)} />
-//             <Tab label="Item Two" {...a11yProps(1)} />
-//             <Tab label="Item Three" {...a11yProps(2)} />
-//             </Tabs>
-//         </AppBar>
-//         <SwipeableViews
-//             axis={theme.direction === 'rtl' ? 'x-reverse' : 'x'}
-//             index={value}
-//             onChangeIndex={handleChangeIndex}
-//         >
-//             <TabPanel value={value} index={0} dir={theme.direction}>
-//             Item One
-//             </TabPanel>
-//             <TabPanel value={value} index={1} dir={theme.direction}>
-//             Item Two
-//             </TabPanel>
-//             <TabPanel value={value} index={2} dir={theme.direction}>
-//             Item Three
-//             </TabPanel>
-//         </SwipeableViews>
-//         </Box>
-//     );
 // }
+
+// export default Favourites;
+

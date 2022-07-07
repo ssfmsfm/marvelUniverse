@@ -5,8 +5,6 @@ import { useSelector } from "../hooks/useSelector";
 import Image from "../image/Image";
 import PageHeader from "../pageHeader/PageHeader";
 
-import "./HeroPage.scss";
-
 
 
 const HeroPage:  React.FC = () => {
@@ -25,13 +23,13 @@ const HeroPage:  React.FC = () => {
 
     if (loading) {
         return (
-            <div>
+            <div className="loading">
                 Loading...
             </div>
         )
     } else if (error) {
         return (
-            <div>
+            <div className="error">
                 Error...
             </div>
         )
@@ -42,10 +40,10 @@ const HeroPage:  React.FC = () => {
     }
 
     return (
-        <div className="hero-page-wrap">
+        <div className="item-page-wrap">
             <PageHeader />
-            <div className="hero-page">
-                <div className="hero-page-info">
+            <div className="item-page">
+                <div className="item-page-info">
                     <div className="title">
                         {data.name}
                     </div>

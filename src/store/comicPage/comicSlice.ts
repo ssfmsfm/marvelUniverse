@@ -1,4 +1,4 @@
-import { createSlice, PayloadAction } from "@reduxjs/toolkit";
+import { createSlice } from "@reduxjs/toolkit";
 import ComicType from "../../types/ComicType";
 import { fetchComic } from "./comicThunks";
 
@@ -15,7 +15,7 @@ const initialState: StoreComicType = {
     error: false
 }
 
-const ComicSlice = createSlice({
+const comicSlice = createSlice({
     name: "comic",
     initialState,
     reducers: {},
@@ -35,8 +35,8 @@ const ComicSlice = createSlice({
     }
 });
 
-export const ComicReducer = ComicSlice.reducer;
+export const ComicReducer = comicSlice.reducer;
 export const ComicActions = {
-    ...ComicSlice.actions,
+    ...comicSlice.actions,
     fetchComic,
 };

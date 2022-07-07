@@ -29,7 +29,7 @@ const ComicCard: React.FC<PropsType> = ({data}) => {
     return (
         <div className="result-card-container">
             <Link to={`/comics/${data.id}`} >
-                <Image src={`${data.thumbnail.path}/portrait_incredible.${data.thumbnail.extension}`}/>
+                <Image src={`${data.thumbnail.path}/portrait_uncanny.${data.thumbnail.extension}`}/>
                 <p className="title">
                     {data.title}
                 </p>

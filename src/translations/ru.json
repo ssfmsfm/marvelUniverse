@@ -21,8 +21,8 @@
 
     "heroes": "Герои",
     "comics": "Комиксы",
-    "movies": "Видео",
-    "history": "История",
+    "events": "События",
+    "creators": "Создатели",
     "favourites": "Избранное",
 
     "searchByName": "Искать по имени",
@@ -35,5 +35,7 @@
     "modiAsc": "Изменению ↑",
     "modiDesc": "Изменению ↓",
     "numberOfHeroes": "Героев на странице",
-    "numberOfComics": "Комиксов на странице"
+    "numberOfComics": "Комиксов на странице",
+    "numberOfEvents": "Событий на странице",
+    "numberOfCreators": "Создателей на странице"
 }

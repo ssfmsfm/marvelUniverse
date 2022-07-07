@@ -21,8 +21,8 @@
 
     "heroes": "Heroes",
     "comics": "Comics",
-    "movies": "Movies",
-    "history": "History",
+    "events": "Events",
+    "creators": "Creators",
     "favourites": "Favourites",
 
     "searchByName": "Search by name",
@@ -34,6 +34,8 @@
     "nameDesc": "Name ↓",
     "modiAsc": "Modified ↑",
     "modiDesc": "Modified ↓",
-    "numberOfHeroes": "Heroes on one page",
-    "numberOfComics": "Comics on one page"
+    "numberOfHeroes": "Heroes on page",
+    "numberOfComics": "Comics on page",
+    "numberOfEvents": "Events on page",
+    "numberOfCreators": "Creators on page"
 }

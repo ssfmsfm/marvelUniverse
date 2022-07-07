@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 import { useActions } from '../../hooks/useActions';
 import { useSelector } from '../../hooks/useSelector';
 import Image from "../../image/Image";
-import HeroType from '../../../types/HeroType';
+import CreatorType from '../../../types/CreatorType';
 import {ReactComponent as FavoIcon} from "../../../assets/auth/favo.svg";
 import { IconButton } from '@mui/material';
 
@@ -12,26 +12,26 @@ import "../../../App.scss";
 
 
 type PropsType = {
-    data: HeroType,
+    data: CreatorType,
 }
 
-const HeroCard: React.FC<PropsType> = ({data}) => {
+const CreatorCard: React.FC<PropsType> = ({ data }) => {
 
-    const { markHero } = useActions();
+    const { markCreator } = useActions();
     const logged = useSelector(state => state.auth.logged);
-    const favoHeroes = useSelector(state => state.heroes.favoHeroes);
-    const isMarked = favoHeroes.includes(data.id);
+    const favoCreators = useSelector(state => state.creators.favoCreators);
+    const isMarked = favoCreators.includes(data.id);
 
     const handleClickMark = () => {
-        return markHero(data.id);
+        return markCreator(data.id);
     }
 
     return (
         <div className="result-card-container">
-            <Link to={`/heroes/${data.id}`} >
+            <Link to={`/creators/${data.id}`} >
                 <Image src={`${data.thumbnail.path}/standard_fantastic.${data.thumbnail.extension}`}/>
                 <p className="title">
-                    {data.name}
+                    {data.fullName}
                 </p>
             </Link>
             {
@@ -47,4 +47,4 @@ const HeroCard: React.FC<PropsType> = ({data}) => {
     )
 }
 
-export default HeroCard;
+export default CreatorCard;

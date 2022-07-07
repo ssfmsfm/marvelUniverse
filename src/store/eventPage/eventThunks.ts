@@ -1,17 +1,17 @@
 import axios from 'axios';
-import ComicType from "../../types/ComicType";
+import EventType from "../../types/EventType";
 import { createAsyncThunk } from '@reduxjs/toolkit';
-import { BASE_URL, API_KEY } from '../../helpers/apikey';
+import { API_KEY, BASE_URL } from '../../helpers/apikey';
+
+const URI = "/events";
 
 
-const URI = "/comics";
-
-export const fetchComic = createAsyncThunk<
-        ComicType,
+export const fetchEvent = createAsyncThunk<
+        EventType,
         string | undefined,
         { rejectValue: string }
     >(
-    "comic/fetchComic",
+    "event/fetchEvent",
     async ( id, { rejectWithValue }) => {
 
         let url = `${BASE_URL}${URI}/${id}?${API_KEY}`;
@@ -19,9 +19,9 @@ export const fetchComic = createAsyncThunk<
         try {
             const response = await axios.get(url)
             .then(res => res.data);
-            return response.data.results[0];
+            return response.data.results[0]; // запрос возвращает массив с одним элементом
         } catch(e: any) {
-            return rejectWithValue(e.message);
+            rejectWithValue(e.message);
         }
     }
 );

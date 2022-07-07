@@ -1,17 +1,16 @@
 import axios from 'axios';
-import ComicType from "../../types/ComicType";
+import CreatorType from "../../types/CreatorType";
 import { createAsyncThunk } from '@reduxjs/toolkit';
 import { BASE_URL, API_KEY } from '../../helpers/apikey';
 
+const URI = "/creators";
 
-const URI = "/comics";
-
-export const fetchComic = createAsyncThunk<
-        ComicType,
+export const fetchCreator = createAsyncThunk<
+        CreatorType,
         string | undefined,
         { rejectValue: string }
     >(
-    "comic/fetchComic",
+    "creator/fetchCreator",
     async ( id, { rejectWithValue }) => {
 
         let url = `${BASE_URL}${URI}/${id}?${API_KEY}`;

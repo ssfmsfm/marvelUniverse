@@ -10,7 +10,7 @@ type StoreHeroesType = {
     count: number,
     loading: boolean,
     error?: string,
-    favoHero: number[],
+    favoHeroes: number[],
     page: number,
     limit: number,
     ordering: HeroesOrder,
@@ -21,7 +21,7 @@ export const initialState: StoreHeroesType = {
     data: [],
     count: 0,
     loading: false,
-    favoHero: Storage.get("favoHero", []),
+    favoHeroes: Storage.get("favoHeroes", []),
     page: 1,
     limit: 8,
     ordering: HeroesOrder.nameAsc,
@@ -54,13 +54,13 @@ const heroesSlice = createSlice({
             state.ordering = payload;
         },
         markHero: (state, { payload: heroId }: PayloadAction<number>) => {
-            if (state.favoHero.includes(heroId)) {
-                state.favoHero = state.favoHero.filter(id => id !==heroId);
+            if (state.favoHeroes.includes(heroId)) {
+                state.favoHeroes = state.favoHeroes.filter(id => id !== heroId);
             } else {
-                state.favoHero.push(heroId);
+                state.favoHeroes.push(heroId);
             }
 
-            Storage.set("favoHero", state.favoHero);
+            Storage.set("favoHeroes", state.favoHeroes);
         }
     },
     extraReducers: builder => {
