@@ -54,6 +54,7 @@ const HeroPage:  React.FC = () => {
 
                 <Image src={`${data.thumbnail.path}/standard_fantastic.${data.thumbnail.extension}`}/>
             </div>
+            <div className="copyright">Data provided by Marvel. © 2014 Marvel</div>
         </div>
     );
 }

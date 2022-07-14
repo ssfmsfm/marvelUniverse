@@ -38,6 +38,7 @@ const EventsPage: React.FC<PropsType> = () => {
                 {loading && <div className="loading">Loading...</div>}
                 {error && <div className="error">{error}</div>}
             </div>
+            <div className="copyright">Data provided by Marvel. © 2014 Marvel</div>
         </div>
     )
 }

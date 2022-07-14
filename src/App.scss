@@ -12,6 +12,11 @@
     // .error, .loading {
     // }
 
+    .copyright {
+        font-style: italic;
+        text-align: center;
+    }
+
     .results-page-wrap {
         width: 100%;
         position: relative;
@@ -257,9 +262,9 @@
             }
 
             .container-image {
-                flex-basis: 50%;
+                flex-basis: 45%;
                 overflow: hidden;
-                max-height: 400px;
+                max-height: 350px;
                 border: 1px solid #a1a0a0;
 
                 .image {

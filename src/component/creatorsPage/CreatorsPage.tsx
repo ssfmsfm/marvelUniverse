@@ -38,6 +38,7 @@ const CreatorsPage: React.FC<PropsType> = () => {
                 {loading && "loading..."}
                 {error}
             </div>
+            <div className="copyright">Data provided by Marvel. © 2014 Marvel</div>
         </div>
     )
 }
