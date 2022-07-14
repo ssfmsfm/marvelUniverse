@@ -52,7 +52,7 @@ const HeroPage:  React.FC = () => {
                     </div>
                 </div>
 
-                <Image src={`${data.thumbnail.path}.${data.thumbnail.extension}`}/>
+                <Image src={`${data.thumbnail.path}/standard_fantastic.${data.thumbnail.extension}`}/>
             </div>
         </div>
     );

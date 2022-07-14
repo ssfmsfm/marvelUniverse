@@ -52,17 +52,25 @@ const CreatorPage:  React.FC = () => {
                     <div className="text">
 
                         <ul>
-                            {data.comics.items.map(({ resourceURI, name }) => {
+                            {
+                                data.comics.items.length != 0
+                            ?
+                                data.comics.items.map(({ resourceURI, name }) => {
 
-                                const comicUrl = resourceURI.slice(resourceURI.indexOf("/comics"));
-                                return (
-                                    <li key={resourceURI}>
-                                        <Link to={comicUrl} className="comicByCreator-link">
-                                            {name}
-                                        </Link>
-                                    </li>
-                                )
-                            })}
+                                    const comicUrl = resourceURI.slice(resourceURI.indexOf("/comics"));
+                                    return (
+                                        <li key={resourceURI}>
+                                            <Link to={comicUrl} className="comicByCreator-link">
+                                                {name}
+                                            </Link>
+                                        </li>
+                                    )
+                                })
+                            :
+                                <div className="text">
+                                    No description for this character.
+                                </div>
+                            }
                         </ul>
                     </div>
                 </div>
